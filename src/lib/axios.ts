@@ -1,6 +1,6 @@
 import axios from "axios";
 import useAuthStore from "@/store/useAuthStore";
-const apiurl=process.env.NEXT_PUBLIC_API_URL||"http://localhost:8080";
+const apiurl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
 const api = axios.create({
   baseURL: apiurl,
   headers: { "Content-Type": "application/json" },
@@ -10,7 +10,7 @@ api.interceptors.request.use(
   (config) => {
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 api.interceptors.response.use(
@@ -21,27 +21,25 @@ api.interceptors.response.use(
     if (response?.status === 401 && !config._retry) {
       config._retry = true;
       try {
-            const res = await axios.post(
-              `${apiurl}/api/reissue`,
-              {},
-              {
-                withCredentials: true,
-              },
-            );
-            const {  userName, roles } = res.data;
-            console.log("userName", userName, "role", roles);
-            useAuthStore.getState().setLogin({
-              userName,
-              roles,
-            });
-            console.log("전체 config:", config);
-            
-            return api(config);
+        const res = await axios.post(
+          `${apiurl}/api/reissue`,
+          {},
+          {
+            withCredentials: true,
+          },
+        );
+        const { userName, roles } = res.data;
+        console.log("userName", userName, "role", roles);
+        useAuthStore.getState().setLogin({
+          userName,
+          roles,
+        });
+        console.log("전체 config:", config);
 
+        return api(config);
       } catch (reissueError) {
-
         useAuthStore.getState().setLogout();
-        if(typeof window!=='undefined'){
+        if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
         return Promise.reject(reissueError);

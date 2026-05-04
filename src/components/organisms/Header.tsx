@@ -2,11 +2,15 @@
 import Link from "next/link";
 import SearchBar from "../molecules/SearchBar";
 import { BookOpen } from "lucide-react";
-export default function Header() {
+import { cn } from "@/lib/utils";
+interface HeaderProps{
+  className?: string;
+}
+export default function Header({className}:HeaderProps) {
 
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur">
+    <header className={cn("sticky top-0 z-50 w-full bg-white/95 backdrop-blur", className)}>
       <div className="container mx-auto flex h-16 items-center justify-between px-4 ">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl px-4">

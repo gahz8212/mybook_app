@@ -8,7 +8,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 
 export default function LoginForm() {
   const router = useRouter();
-  const setLogin  = useAuthStore((state) => state.setLogin);
+  const setLogin = useAuthStore((state) => state.setLogin);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,8 +18,8 @@ export default function LoginForm() {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    try{
-      const response = await fetch("/api/auth/login", {
+    try {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,9 +34,9 @@ export default function LoginForm() {
       setLogin({ userName, roles });
       router.push("/");
       router.refresh();
-    }catch (err:any){
+    } catch (err: any) {
       setError(err.message || "로그인 중 오류가 발생했습니다.");
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   }
@@ -47,7 +47,7 @@ export default function LoginForm() {
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        icon={<Mail size={18}/>}
+        icon={<Mail size={18} />}
         required
       />
       <Input
