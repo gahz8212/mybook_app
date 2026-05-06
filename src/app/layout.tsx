@@ -85,7 +85,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="ko" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="ko" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body>
         {/* 3. 가져온 정보를 클라이언트 스토어에 주입 (수혈기) */}
         <AuthInitializer 
