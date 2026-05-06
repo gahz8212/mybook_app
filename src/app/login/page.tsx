@@ -1,4 +1,4 @@
-import LoginForm from '@/components/molecules/LoginForm';
+import AuthForm from '@/components/molecules/AuthForm';
 import Link from 'next/link';
 
 export const metadata = {
@@ -16,7 +16,7 @@ export default function LoginPage() {
         </div>
 
         {/* 클라이언트 컴포넌트 주입 */}
-        <LoginForm />
+        <AuthForm type="login" />
 
         <div className="mt-8 text-center text-sm text-gray-600">
           아직 계정이 없으신가요?{' '}

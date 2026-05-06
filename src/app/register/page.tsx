@@ -1,6 +1,5 @@
-import RegistForm from "@/components/molecules/RegistForm"
 import Link from "next/link";
-
+import AuthForm from "@/components/molecules/AuthForm";
 export default function Register() {
   return (
      <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center py-12">
@@ -11,7 +10,7 @@ export default function Register() {
         </div>
 
         {/* 클라이언트 컴포넌트 주입 */}
-        <RegistForm />
+        <AuthForm type="register" />
 
         <div className="mt-8 text-center text-sm text-gray-600">
           아직 계정이 없으신가요?{' '}
